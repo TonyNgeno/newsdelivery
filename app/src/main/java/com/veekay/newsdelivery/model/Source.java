@@ -1,8 +1,10 @@
 package com.veekay.newsdelivery.model;
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 
 
-
+@Parcel
 public class Source {
     private String mId;
     private String mName;

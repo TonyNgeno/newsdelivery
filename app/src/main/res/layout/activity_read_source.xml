@@ -6,4 +6,21 @@
     android:layout_height="match_parent"
     tools:context="com.veekay.newsdelivery.ui.ReadSourceActivity">
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/articleViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+        <android.support.v4.view.PagerTabStrip
+            android:id="@+id/articleViewTabStrip"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"/>
+
+    </android.support.v4.view.ViewPager>
+
+
 </android.support.constraint.ConstraintLayout>

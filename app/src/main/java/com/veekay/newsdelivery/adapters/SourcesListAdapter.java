@@ -13,6 +13,9 @@ import android.widget.TextView;
 
 import com.veekay.newsdelivery.R;
 import com.veekay.newsdelivery.model.Source;
+import com.veekay.newsdelivery.ui.ReadSourceActivity;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -63,18 +66,22 @@ public class SourcesListAdapter extends RecyclerView.Adapter<SourcesListAdapter.
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
             itemView.setOnClickListener(this);
-            clickToOpenSource.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent();
-                }
-            });
+
         }
-        public void bindSource(Source source){
+        public void bindSource(final Source source){
 
             sourceNameTextView.setText(source.getName());
             sourceDescription.setText(source.getDescription());
             dropDownLayout.setVisibility(View.GONE);
+            dropdownListImageView.setImageResource(R.drawable.ic_play_arrow_black_24dp);
+            clickToOpenSource.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(mContext, ReadSourceActivity.class);
+                    intent.putExtra("source", Parcels.wrap(source));
+                    mContext.startActivity(intent);
+                }
+            });
         }
         @Override
         public void onClick(View v){
@@ -83,7 +90,7 @@ public class SourcesListAdapter extends RecyclerView.Adapter<SourcesListAdapter.
                 dropdownListImageView.setImageResource(R.drawable.ic_play_arrow_black_24dp);
             }else{
                 dropDownLayout.setVisibility(View.VISIBLE);
-                dropdownListImageView.setImageResource(R.drawable.ic_arrow_drop_down_black_24dp);
+                dropdownListImageView.setImageResource(R.drawable.ic_arrow_downward_white_24dp);
 
             }
         }
