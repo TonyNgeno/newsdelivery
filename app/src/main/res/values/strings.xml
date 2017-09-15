@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">News Delivery</string>
+    <string name="source_description">"Australia's most trusted source of local, national and world news. Comprehensive, independent, in-depth analysis, the latest business, sport, weather and more."</string>
 </resources>

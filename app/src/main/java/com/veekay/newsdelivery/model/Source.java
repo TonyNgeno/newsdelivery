@@ -1,7 +1,9 @@
 package com.veekay.newsdelivery.model;
-import java.util.List;
+import java.util.ArrayList;
 
-public class Sources{
+
+
+public class Source {
     private String mId;
     private String mName;
     private String mDescription;
@@ -9,18 +11,21 @@ public class Sources{
     private String mCategory;
     private String mLanguage;
     private String mCountry;
-    private List<String> mSortsByAvailable;
+    private ArrayList<String> mSortsByAvailable = new ArrayList<>();
 
-    public void Sources(String id, String name, String description, String url, String category, String language, String country, List<String> sortsByAvailable){
-        mId = id;
-        mName = name;
-        mDescription = description;
-        mUrl = url;
-        mCategory = category;
-        mLanguage = language;
-        mCountry = country;
-        mSortsByAvailable = sortsByAvailable;
+    public Source(){}
+
+    public Source(String id, String name, String description, String url, String category, String language, String country, ArrayList<String> sortsByAvailable){
+        this.mId = id;
+        this.mName = name;
+        this.mDescription = description;
+        this.mUrl = url;
+        this.mCategory = category;
+        this.mLanguage = language;
+        this.mCountry = country;
+        this.mSortsByAvailable = sortsByAvailable;
     }
+
     public String getId(){
         return mId;
     }
@@ -42,7 +47,7 @@ public class Sources{
     public String getCountry(){
         return mCountry;
     }
-    public List<String> getSortsByAvailable(){
+    public ArrayList<String> getSortsByAvailable(){
         return mSortsByAvailable;
     }
 }
