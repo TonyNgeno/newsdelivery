@@ -1,6 +1,8 @@
 ## News Delivery
 A mobile app that delivers current news headlines and articles from global news sources based on the newsapi
 
+As seen on [Google Play Store](https://play.google.com/store/apps/details?id=com.veekay.newsdelivery)
+
 **Specs**
 1. Uses can view sources on the home page
 2. On click create a drop down to view more details
