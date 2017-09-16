@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.ReadArticlesActivity"></activity>
+        <activity android:name=".ui.ReadArticlesActivity" />
+        <activity android:name=".ui.ArticleWebViewActivity"></activity>
     </application>
 
 </manifest>

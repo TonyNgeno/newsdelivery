@@ -10,7 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildTypes.each{
+        buildTypes.each {
             it.buildConfigField 'String', 'NEWS_API_KEY', NEWS_API_KEY
         }
     }
@@ -36,7 +36,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'org.parceler:parceler-api:1.1.6'
     compile 'com.android.support:support-v4:26.+'
+    compile 'com.squareup.picasso:picasso:2.5.2'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'org.parceler:parceler:1.1.6'
-    compile 'com.squareup.picasso:picasso:2.5.2'
 }

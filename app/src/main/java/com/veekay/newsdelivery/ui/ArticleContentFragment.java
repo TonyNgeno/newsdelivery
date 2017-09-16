@@ -1,6 +1,7 @@
 package com.veekay.newsdelivery.ui;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -46,7 +47,7 @@ public class ArticleContentFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_article_content, container, false);
         ButterKnife.bind(this, view);
@@ -55,12 +56,14 @@ public class ArticleContentFragment extends Fragment {
         publishedAtTextView.setText(mArticle.getPublishedAT());
         articleDescription.setText(mArticle.getDescription());
 
-//        openInBrowserIcon.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
+        openInBrowserIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), ArticleWebViewActivity.class);
+                intent.putExtra("url", mArticle.getUrl());
+                startActivity(intent);
+            }
+        });
 
 
         return view;
