@@ -1,6 +1,7 @@
 package com.veekay.newsdelivery.ui;
 
 
+import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<Source> sources;
     private SourcesListAdapter sourcesListAdapter;
     @Bind(R.id.newsSourceRecyclerView) RecyclerView newsSourceRecyclerView;
+    public Context mContext = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        sourcesListAdapter = new SourcesListAdapter(getApplicationContext(), sources);
+                        sourcesListAdapter = new SourcesListAdapter(mContext, sources);
                         newsSourceRecyclerView.setAdapter(sourcesListAdapter);
                         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
                         newsSourceRecyclerView.setLayoutManager(layoutManager);

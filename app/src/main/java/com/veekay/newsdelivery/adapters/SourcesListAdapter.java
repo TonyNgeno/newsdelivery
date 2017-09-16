@@ -73,10 +73,11 @@ public class SourcesListAdapter extends RecyclerView.Adapter<SourcesListAdapter.
             sourceDescription.setText(source.getDescription());
             dropDownLayout.setVisibility(View.GONE);
             dropdownListImageView.setImageResource(R.drawable.ic_play_arrow_black_24dp);
+
             clickToOpenSource.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(mContext, ReadArticlesActivity.class);
+                    Intent intent = new Intent(view.getContext(), ReadArticlesActivity.class);
                     intent.putExtra("source", Parcels.wrap(source));
                     mContext.startActivity(intent);
                 }
