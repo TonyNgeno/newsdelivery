@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">News Delivery</string>
     <string name="source_description">"Australia's most trusted source of local, national and world news. Comprehensive, independent, in-depth analysis, the latest business, sport, weather and more."</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="articleTitle">North Korea missile test angers Japan, South Korea</string>
+    <string name="articleDescription">Victims of trafficking rings say the networks operate anonymously in shisha bars and coffee shops in Yemen and Egypt.</string>
+    <string name="articlePublishedAt">2017-09-15T07:33:00Z</string>
 </resources>

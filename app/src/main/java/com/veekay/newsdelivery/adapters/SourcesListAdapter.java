@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,7 @@ import android.widget.TextView;
 
 import com.veekay.newsdelivery.R;
 import com.veekay.newsdelivery.model.Source;
-import com.veekay.newsdelivery.ui.ReadSourceActivity;
+import com.veekay.newsdelivery.ui.ReadArticlesActivity;
 
 import org.parceler.Parcels;
 
@@ -77,7 +76,7 @@ public class SourcesListAdapter extends RecyclerView.Adapter<SourcesListAdapter.
             clickToOpenSource.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(mContext, ReadSourceActivity.class);
+                    Intent intent = new Intent(mContext, ReadArticlesActivity.class);
                     intent.putExtra("source", Parcels.wrap(source));
                     mContext.startActivity(intent);
                 }

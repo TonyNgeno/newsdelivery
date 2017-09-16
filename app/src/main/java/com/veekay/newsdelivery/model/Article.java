@@ -1,9 +1,12 @@
 package com.veekay.newsdelivery.model;
 
+import org.parceler.Parcel;
+
 /**
  * Created by kingkong on 9/15/17.
  */
 
+@Parcel
 public class Article {
     private String mAuthor;
     private String mTitle;
@@ -12,6 +15,7 @@ public class Article {
     private String mUrlToImage;
     private String mPublishedAt;
 
+    public Article(){}
     public Article(String author, String title, String description, String url, String urlToImage, String publishedAt){
         mAuthor = author;
         mTitle = title;

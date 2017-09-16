@@ -6,4 +6,7 @@ package com.veekay.newsdelivery;
 
 public class Constants {
     public final static String NEWSAPI_SOURCES_BASE_URL = "https://newsapi.org/v1/sources";
+    public final static String NEWSAPI_ARTICLES_BASE_URL = "https://newsapi.org/v1/articles";
+    public final static String NEWSAPI_API_KEY = BuildConfig.NEWS_API_KEY;
+
 }
