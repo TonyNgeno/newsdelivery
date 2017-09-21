@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "970300280703",
+    "firebase_url": "https://rentals-fa496.firebaseio.com",
+    "project_id": "rentals-fa496",
+    "storage_bucket": "rentals-fa496.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970300280703:android:97343da9be098ef0",
+        "android_client_info": {
+          "package_name": "com.veekay.newsdelivery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "970300280703-64tlefn9m8920mb9ri3agp1org6tfqjt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.veekay.newsdelivery",
+            "certificate_hash": "f90fa57c3af120dfd8d2981c21fbdf489ea0f10a"
+          }
+        },
+        {
+          "client_id": "970300280703-8j91p944vug7a8tcgs9fi9bml77go2sa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFdG_3sZNIT9Zy6VbDYMVfeusq15_0x-Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "970300280703-8j91p944vug7a8tcgs9fi9bml77go2sa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -9,7 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.veekay.newsdelivery.R;
 import com.veekay.newsdelivery.model.Source;
 import com.veekay.newsdelivery.ui.ReadArticlesActivity;
@@ -28,6 +31,7 @@ import butterknife.ButterKnife;
 public class SourcesListAdapter extends RecyclerView.Adapter<SourcesListAdapter.SourcesViewHolder>{
     private Context mContext;
     private ArrayList<Source> mSources;
+    private FirebaseAuth mAuth;
 
     public SourcesListAdapter(Context context, ArrayList<Source> sources){
         this.mContext = context;
@@ -38,6 +42,7 @@ public class SourcesListAdapter extends RecyclerView.Adapter<SourcesListAdapter.
     public SourcesListAdapter.SourcesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.list_source_item, parent, false);
         SourcesViewHolder viewHolder = new SourcesViewHolder(view);
+        mAuth = FirebaseAuth.getInstance();
         return viewHolder;
     }
 
@@ -59,12 +64,14 @@ public class SourcesListAdapter extends RecyclerView.Adapter<SourcesListAdapter.
         @BindView(R.id.sourceDescription) TextView sourceDescription;
         @BindView(R.id.dropDownLayout) ConstraintLayout dropDownLayout;
         @BindView(R.id.clickToOpenSource) ImageView clickToOpenSource;
+        @BindView(R.id.listItemListView) ConstraintLayout listItemListView;
+        @BindView(R.id.starIcon) ImageView starIcon;
 
         public SourcesViewHolder(View itemView){
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
-            itemView.setOnClickListener(this);
+            listItemListView.setOnClickListener(this);
 
         }
         public void bindSource(final Source source){
@@ -82,17 +89,40 @@ public class SourcesListAdapter extends RecyclerView.Adapter<SourcesListAdapter.
                     mContext.startActivity(intent);
                 }
             });
+
+            starIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    toggleFavorites(source);
+                }
+            });
         }
         @Override
         public void onClick(View v){
-            if(dropDownLayout.getVisibility()==View.VISIBLE){
-                dropDownLayout.setVisibility(View.GONE);
-                dropdownListImageView.setImageResource(R.drawable.ic_play_arrow_black_24dp);
-            }else{
-                dropDownLayout.setVisibility(View.VISIBLE);
-                dropdownListImageView.setImageResource(R.drawable.ic_arrow_downward_white_24dp);
-
+            if (v == listItemListView){
+                if(dropDownLayout.getVisibility()==View.VISIBLE){
+                    dropDownLayout.setVisibility(View.GONE);
+                    dropdownListImageView.setImageResource(R.drawable.ic_play_arrow_black_24dp);
+                }else{
+                    dropDownLayout.setVisibility(View.VISIBLE);
+                    dropdownListImageView.setImageResource(R.drawable.ic_arrow_downward_white_24dp);
+                }
             }
+
         }
+    }
+    public void toggleFavorites(Source source){
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser!=null){
+            Toast toast = Toast.makeText(mContext, "Yes", Toast.LENGTH_LONG);
+            toast.show();
+        }else{
+            CharSequence text = "You need to login to add to Favorites";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(mContext, text, duration);
+            toast.show();
+        }
+
     }
 }

@@ -20,14 +20,16 @@
         android:text="@string/articleTitle"
         android:textSize="24sp"
         android:textStyle="bold|italic"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
+        android:textColor="#b2ebf2
+"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/articleImageView"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:paddingTop="10dp"/>
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"/>
     <TextView
         android:id="@+id/publishedAtTextView"
         android:text="@string/articlePublishedAt"
