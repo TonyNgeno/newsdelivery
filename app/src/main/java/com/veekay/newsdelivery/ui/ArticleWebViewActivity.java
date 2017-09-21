@@ -3,15 +3,17 @@ package com.veekay.newsdelivery.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.veekay.newsdelivery.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ArticleWebViewActivity extends AppCompatActivity {
-    @Bind(R.id.articleWebView)
+    @BindView(R.id.articleWebView)
     WebView articleWebView;
 
     @Override
@@ -23,5 +25,6 @@ public class ArticleWebViewActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String url = intent.getStringExtra("url");
         webview.loadUrl(url);
+        webview.setWebViewClient(new WebViewClient());
     }
 }

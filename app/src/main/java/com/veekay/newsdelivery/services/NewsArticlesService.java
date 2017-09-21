@@ -8,7 +8,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -48,9 +51,18 @@ public class NewsArticlesService {
                     String description = articleJson.getString("description");
                     String url = articleJson.getString("url");
                     String urlToImage = articleJson.getString("urlToImage");
-                    String publishedAt = articleJson.getString("publishedAt");
 
-                    Article article = new Article(author,title,description,url,urlToImage,publishedAt);
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+                    String articleDate;
+                    try{
+                        Date date = format.parse(articleJson.getString("publishedAt"));
+                        articleDate = new SimpleDateFormat("EEE, MMMM dd, yyyy").format(date);
+                    } catch (ParseException e){
+                        articleDate = articleJson.getString("publishedAt");
+                    }
+
+
+                    Article article = new Article(author,title,description,url,urlToImage,articleDate);
                     articles.add(article);
                 }
             }

@@ -18,7 +18,7 @@ import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -54,11 +54,11 @@ public class SourcesListAdapter extends RecyclerView.Adapter<SourcesListAdapter.
 
     public class SourcesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private Context mContext;
-        @Bind(R.id.sourceNameTextView) TextView sourceNameTextView;
-        @Bind(R.id.dropdownListImageView) ImageView dropdownListImageView;
-        @Bind(R.id.sourceDescription) TextView sourceDescription;
-        @Bind(R.id.dropDownLayout) ConstraintLayout dropDownLayout;
-        @Bind(R.id.clickToOpenSource) ImageView clickToOpenSource;
+        @BindView(R.id.sourceNameTextView) TextView sourceNameTextView;
+        @BindView(R.id.dropdownListImageView) ImageView dropdownListImageView;
+        @BindView(R.id.sourceDescription) TextView sourceDescription;
+        @BindView(R.id.dropDownLayout) ConstraintLayout dropDownLayout;
+        @BindView(R.id.clickToOpenSource) ImageView clickToOpenSource;
 
         public SourcesViewHolder(View itemView){
             super(itemView);

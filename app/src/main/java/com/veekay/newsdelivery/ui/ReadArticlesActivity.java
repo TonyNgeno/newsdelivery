@@ -19,14 +19,14 @@ import org.parceler.Parcels;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
 public class ReadArticlesActivity extends AppCompatActivity {
-    @Bind(R.id.articleViewPager) ViewPager articleViewPager;
+    @BindView(R.id.articleViewPager) ViewPager articleViewPager;
 
 
     public ArrayList<Article> mArticles = new ArrayList<>();

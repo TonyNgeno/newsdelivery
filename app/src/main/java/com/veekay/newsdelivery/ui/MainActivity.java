@@ -19,7 +19,7 @@ import com.veekay.newsdelivery.services.NewsSourcesService;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -28,7 +28,7 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
     public ArrayList<Source> sources;
     private SourcesListAdapter sourcesListAdapter;
-    @Bind(R.id.newsSourceRecyclerView) RecyclerView newsSourceRecyclerView;
+    @BindView(R.id.newsSourceRecyclerView) RecyclerView newsSourceRecyclerView;
     public Context mContext = this;
 
     @Override

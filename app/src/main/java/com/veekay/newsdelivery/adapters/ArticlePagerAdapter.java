@@ -30,6 +30,7 @@ public class ArticlePagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return mArticles.size();
     }
+
     @Override
     public CharSequence getPageTitle(int position){
         String title = mArticles.get(position).getAuthor();
@@ -38,6 +39,6 @@ public class ArticlePagerAdapter extends FragmentPagerAdapter {
         }else{
             return "by: "+ mArticles.get(position).getAuthor();
         }
-
     }
+
 }

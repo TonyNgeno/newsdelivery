@@ -2,6 +2,8 @@ package com.veekay.newsdelivery.model;
 
 import org.parceler.Parcel;
 
+import java.time.ZonedDateTime;
+
 /**
  * Created by kingkong on 9/15/17.
  */

@@ -17,8 +17,9 @@ import com.veekay.newsdelivery.model.Article;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
+import java.util.Date;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -26,11 +27,11 @@ import butterknife.ButterKnife;
  */
 public class ArticleContentFragment extends Fragment {
     private Article mArticle;
-    @Bind(R.id.articleImageView) ImageView articleImageView;
-    @Bind(R.id.articleTitle) TextView articleTitle;
-    @Bind(R.id.publishedAtTextView) TextView publishedAtTextView;
-    @Bind(R.id.articleDescription) TextView articleDescription;
-    @Bind(R.id.openInBrowserIcon) ImageView openInBrowserIcon;
+    @BindView(R.id.articleImageView) ImageView articleImageView;
+    @BindView(R.id.articleTitle) TextView articleTitle;
+    @BindView(R.id.publishedAtTextView) TextView publishedAtTextView;
+    @BindView(R.id.articleDescription) TextView articleDescription;
+    @BindView(R.id.openInBrowserIcon) ImageView openInBrowserIcon;
 
     public static ArticleContentFragment newInstance(Article article){
         ArticleContentFragment articleContentFragment = new ArticleContentFragment();

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorBackground"
+    android:background="#424242"
     tools:context="com.veekay.newsdelivery.ui.ArticleContentFragment">
     <ImageView
         android:id="@+id/articleImageView"

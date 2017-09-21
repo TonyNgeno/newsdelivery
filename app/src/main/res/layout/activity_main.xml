@@ -8,7 +8,7 @@
     tools:context="com.veekay.newsdelivery.ui.MainActivity">
     <TextView
         android:id="@+id/mainPageTitle"
-        android:text="Sources:"
+        android:text="All Sources:"
         android:textColor="@color/colorWhite"
         android:textSize="23sp"
         android:textStyle="bold"
