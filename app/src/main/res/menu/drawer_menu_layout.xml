@@ -10,6 +10,9 @@
         android:id="@+id/logoutMenuText"
         android:title="Logout" />
     <item
+        android:id="@+id/createAccount"
+        android:title="Sign Up" />
+    <item
         android:id="@+id/aboutMenuText"
         android:title="About" />
 

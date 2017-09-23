@@ -2,39 +2,35 @@ package com.veekay.newsdelivery.ui;
 
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.TabItem;
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.veekay.newsdelivery.R;
-import com.veekay.newsdelivery.adapters.SourcesListAdapter;
-import com.veekay.newsdelivery.model.Source;
-import com.veekay.newsdelivery.services.NewsSourcesService;
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     @BindView(R.id.container) ViewPager container;
     @BindView(R.id.sourcesTabLayout) TabLayout sourcesTabLayout;
+    @BindView(R.id.drawer_layout) DrawerLayout drawer_layout;
+//    @BindView(R.id.loginMenuText) TextView loginMenuText;
+//    @BindView(R.id.logoutMenuText) TextView logoutMenuText;
     public Context mContext = this;
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
@@ -43,8 +39,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-//        allSourcesTab.
+
         ButterKnife.bind(this);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
+
+//        logoutMenuText.setOnClickListener(this);
+//        loginMenuText.setOnClickListener(this);
+
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         container.setAdapter(mSectionsPagerAdapter);
@@ -52,7 +56,25 @@ public class MainActivity extends AppCompatActivity {
         container.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(sourcesTabLayout));
         sourcesTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(container));
 
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.loginMenuText){
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+            return true;
+        }else if(id == R.id.createAccount){
+            Intent intent = new Intent(getApplicationContext(), CreateAccountActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        drawer_layout.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter{
