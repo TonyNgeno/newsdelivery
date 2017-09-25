@@ -27,18 +27,23 @@
         </activity>
         <activity
             android:name=".ui.ReadArticlesActivity"
-            android:theme="@style/Theme.AppCompat"/>
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".ui.ArticleWebViewActivity"
-            android:theme="@style/Theme.AppCompat"/>
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".ui.LoginActivity"
-            android:theme="@style/Theme.AppCompat"/>
+            android:theme="@style/Theme.AppCompat"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
             android:name=".ui.CreateAccountActivity"
-            android:theme="@style/Theme.AppCompat">
-
-        </activity>
+            android:theme="@style/Theme.AppCompat"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity
+            android:name=".ui.FeedbackActivity"
+            android:theme="@style/Theme.AppCompat"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity android:name=".ui.AboutActivity"></activity>
     </application>
 
 </manifest>

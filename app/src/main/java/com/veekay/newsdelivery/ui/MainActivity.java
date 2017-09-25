@@ -15,24 +15,36 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.veekay.newsdelivery.MenuItemClickListener;
 import com.veekay.newsdelivery.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.container) ViewPager container;
     @BindView(R.id.sourcesTabLayout) TabLayout sourcesTabLayout;
-    @BindView(R.id.drawer_layout) DrawerLayout drawer_layout;
-//    @BindView(R.id.loginMenuText) TextView loginMenuText;
-//    @BindView(R.id.logoutMenuText) TextView logoutMenuText;
+
+    private MenuItem loginMenuText;
+    private MenuItem logoutMenuText;
+    private MenuItem createAccount;
+    private MenuItem feedBackMenuText;
+    private MenuItem aboutMenuText;
+
     public Context mContext = this;
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -42,12 +54,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         ButterKnife.bind(this);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
 
-//        logoutMenuText.setOnClickListener(this);
-//        loginMenuText.setOnClickListener(this);
+        mAuth = FirebaseAuth.getInstance();
+
 
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -56,26 +65,57 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         container.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(sourcesTabLayout));
         sourcesTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(container));
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+
+        createAuthStateListener();
+
 
     }
-
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if(id == R.id.loginMenuText){
-            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-            startActivity(intent);
-            return true;
-        }else if(id == R.id.createAccount){
-            Intent intent = new Intent(getApplicationContext(), CreateAccountActivity.class);
-            startActivity(intent);
-            return true;
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.drawer_menu_layout, menu);
+        MenuItemClickListener menuItemClickListener = new MenuItemClickListener(getApplicationContext(), this);
+
+        loginMenuText = menu.findItem(R.id.loginMenuText);
+        createAccount = menu.findItem(R.id.createAccount);
+        logoutMenuText = menu.findItem(R.id.logoutMenuText);
+        feedBackMenuText = menu.findItem(R.id.feedBackMenuText);
+        aboutMenuText = menu.findItem(R.id.aboutMenuText);
+
+        if(mAuth.getCurrentUser()==null){
+            loginMenuText.setVisible(true);
+            createAccount.setVisible(true);
+            logoutMenuText.setVisible(false);
+        }else{
+            loginMenuText.setVisible(false);
+            createAccount.setVisible(false);
+            logoutMenuText.setVisible(true);
         }
-        drawer_layout.closeDrawer(GravityCompat.START);
+        loginMenuText.setOnMenuItemClickListener(menuItemClickListener);
+        logoutMenuText.setOnMenuItemClickListener(menuItemClickListener);
+        aboutMenuText.setOnMenuItemClickListener(menuItemClickListener);
+        feedBackMenuText.setOnMenuItemClickListener(menuItemClickListener);
+
         return true;
     }
+    public void createAuthStateListener(){
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                final FirebaseUser user = firebaseAuth.getCurrentUser();
+                if(user!=null){
+                    loginMenuText.setVisible(false);
+                    createAccount.setVisible(false);
+                    logoutMenuText.setVisible(true);
+                }else{
+                    loginMenuText.setVisible(true);
+                    createAccount.setVisible(true);
+                    logoutMenuText.setVisible(false);
+                }
+            }
+        };
+    }
+
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter{
         public SectionsPagerAdapter(FragmentManager fm) {
