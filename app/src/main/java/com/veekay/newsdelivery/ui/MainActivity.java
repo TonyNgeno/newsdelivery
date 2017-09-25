@@ -2,25 +2,17 @@ package com.veekay.newsdelivery.ui;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -59,7 +51,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        container.setOffscreenPageLimit(2);
+        container.setCurrentItem(1);
         container.setAdapter(mSectionsPagerAdapter);
 
         container.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(sourcesTabLayout));
@@ -131,12 +126,12 @@ public class MainActivity extends AppCompatActivity {
             }else if (position==1){
                 return new SavedSourcesFragment();
             }
-            return new AllSourcesFragment();
+            return null;
         }
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 2 total pages.
+            return 2;
         }
     }
 }

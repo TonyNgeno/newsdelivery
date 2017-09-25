@@ -5,10 +5,18 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.veekay.newsdelivery.Constants;
 import com.veekay.newsdelivery.R;
 import com.veekay.newsdelivery.adapters.SourcesListAdapter;
 import com.veekay.newsdelivery.model.Source;
@@ -29,7 +37,7 @@ import okhttp3.Response;
 public class AllSourcesFragment extends Fragment {
     public ArrayList<Source> sources;
     private SourcesListAdapter sourcesListAdapter;
-    @BindView(R.id.newsSourceRecyclerView) RecyclerView newsSourceRecyclerView;
+    @BindView(R.id.allNewsSourceRecyclerView) RecyclerView allNewsSourceRecyclerView;
 
 
     public AllSourcesFragment (){
@@ -64,15 +72,14 @@ public class AllSourcesFragment extends Fragment {
                     public void run() {
 
                         sourcesListAdapter = new SourcesListAdapter(getContext(), sources);
-                        newsSourceRecyclerView.setAdapter(sourcesListAdapter);
+                        allNewsSourceRecyclerView.setAdapter(sourcesListAdapter);
                         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-                        newsSourceRecyclerView.setLayoutManager(layoutManager);
-                        newsSourceRecyclerView.setHasFixedSize(false);
+                        allNewsSourceRecyclerView.setLayoutManager(layoutManager);
+                        allNewsSourceRecyclerView.setHasFixedSize(false);
                     }
                 });
             }
         });
 
     }
-
 }

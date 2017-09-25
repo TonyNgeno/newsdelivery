@@ -10,38 +10,45 @@ import java.time.ZonedDateTime;
 
 @Parcel
 public class Article {
-    private String mAuthor;
-    private String mTitle;
-    private String mDescription;
-    private String mUrl;
-    private String mUrlToImage;
-    private String mPublishedAt;
+    private String author;
+    private String title;
+    private String description;
+    private String url;
+    private String urlToImage;
+    private String publishedAt;
+    private String pushId;
 
     public Article(){}
     public Article(String author, String title, String description, String url, String urlToImage, String publishedAt){
-        mAuthor = author;
-        mTitle = title;
-        mDescription = description;
-        mUrl = url;
-        mUrlToImage = urlToImage;
-        mPublishedAt = publishedAt;
+        this.author = author;
+        this.title = title;
+        this.description = description;
+        this.url = url;
+        this.urlToImage = urlToImage;
+        this.publishedAt = publishedAt;
     }
     public String getAuthor(){
-        return mAuthor;
+        return author;
     }
     public String getTitle(){
-        return mTitle;
+        return title;
     }
     public String getDescription(){
-        return mDescription;
+        return description;
     }
     public String getUrl(){
-        return mUrl;
+        return url;
     }
     public String getUrlToImage(){
-        return mUrlToImage;
+        return urlToImage;
     }
     public String getPublishedAT(){
-        return mPublishedAt;
+        return publishedAt;
+    }
+    public void setPushId(String pushId){
+        this.pushId = pushId;
+    }
+    public String getPushId(){
+        return pushId;
     }
 }

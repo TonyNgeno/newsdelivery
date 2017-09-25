@@ -13,6 +13,13 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.veekay.newsdelivery.Constants;
 import com.veekay.newsdelivery.R;
 import com.veekay.newsdelivery.model.Source;
 import com.veekay.newsdelivery.ui.ReadArticlesActivity;
@@ -111,11 +118,51 @@ public class SourcesListAdapter extends RecyclerView.Adapter<SourcesListAdapter.
 
         }
     }
-    public void toggleFavorites(Source source){
+    public void toggleFavorites(final Source source){
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser!=null){
-            Toast toast = Toast.makeText(mContext, "Yes", Toast.LENGTH_LONG);
-            toast.show();
+            String uid = currentUser.getUid();
+
+            final DatabaseReference databaseReference = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.SOURCES_DB_KEY)
+                    .child(uid);
+
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    boolean valueExists = false;
+                    for(DataSnapshot childSnapShot:dataSnapshot.getChildren()){
+                        if(childSnapShot.child("id").getValue().equals(source.getId())){
+                            valueExists = true;
+                            return;
+                        }
+                    }
+
+                    if(!valueExists){
+                        DatabaseReference pushRef = databaseReference.push();
+                        String pushId = pushRef.getKey();
+
+                        source.setPushId(pushId);
+
+                        pushRef.setValue(source);
+
+
+                        Toast toast = Toast.makeText(mContext, "Saved", Toast.LENGTH_LONG);
+                        toast.show();
+                    }else{
+                        Toast toast = Toast.makeText(mContext, "Already Saved", Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+
         }else{
             CharSequence text = "You need to login to add to Favorites";
             int duration = Toast.LENGTH_SHORT;

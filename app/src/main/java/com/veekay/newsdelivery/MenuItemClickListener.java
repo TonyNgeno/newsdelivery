@@ -30,8 +30,7 @@ public class MenuItemClickListener implements MenuItem.OnMenuItemClickListener {
     public boolean onMenuItemClick(MenuItem menuItem) {
         int id = menuItem.getItemId();
         if(id == R.id.loginMenuText){
-            Intent intent = new Intent(mContext, LoginActivity.class);
-            mContext.startActivity(intent);
+            login();
         }else if(id == R.id.logoutMenuText){
             logout();
         }else if(id == R.id.createAccount){
@@ -43,23 +42,36 @@ public class MenuItemClickListener implements MenuItem.OnMenuItemClickListener {
         }
         return true;
     }
+    public void login(){
+        Activity activity = new CreateAccountActivity();
+        Intent intent = new Intent(mContext, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mContext.startActivity(intent);
+    }
     public void logout(){
 
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(mContext, mActivity.getClass());
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         mContext.startActivity(intent);
     }
     public void createAccount(){
-        Intent intent = new Intent(mContext, CreateAccountActivity.class);
+        Activity activity = new CreateAccountActivity();
+        Intent intent = new Intent(mContext, activity.getClass());
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mContext.startActivity(intent);
     }
     public void openAboutPage(){
-        Intent intent = new Intent(mContext, AboutActivity.class);
+        Activity activity = new AboutActivity();
+        Intent intent = new Intent(mContext, activity.getClass());
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mContext.startActivity(intent);
     }
     public void giveFeedBack(){
-        Intent intent = new Intent(mContext, FeedbackActivity.class);
+        Activity activity = new FeedbackActivity();
+        Intent intent = new Intent(mContext, activity.getClass());
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mContext.startActivity(intent);
     }
 }

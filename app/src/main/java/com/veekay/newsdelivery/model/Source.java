@@ -2,54 +2,62 @@ package com.veekay.newsdelivery.model;
 import org.parceler.Parcel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Parcel
 public class Source {
-    private String mId;
-    private String mName;
-    private String mDescription;
-    private String mUrl;
-    private String mCategory;
-    private String mLanguage;
-    private String mCountry;
-    private ArrayList<String> mSortsByAvailable = new ArrayList<>();
+    private String id;
+    private String name;
+    private String description;
+    private String url;
+    private String category;
+    private String language;
+    private String country;
+    private List<String> sortsByAvailable = new ArrayList<>();
+    private String pushId;
 
     public Source(){}
 
     public Source(String id, String name, String description, String url, String category, String language, String country, ArrayList<String> sortsByAvailable){
-        this.mId = id;
-        this.mName = name;
-        this.mDescription = description;
-        this.mUrl = url;
-        this.mCategory = category;
-        this.mLanguage = language;
-        this.mCountry = country;
-        this.mSortsByAvailable = sortsByAvailable;
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.url = url;
+        this.category = category;
+        this.language = language;
+        this.country = country;
+        this.sortsByAvailable = sortsByAvailable;
     }
 
     public String getId(){
-        return mId;
+        return id;
     }
     public String getName(){
-        return mName;
+        return name;
     }
     public String getDescription(){
-        return mDescription;
+        return description;
     }
     public String getUrl(){
-        return mUrl;
+        return url;
     }
     public String getCategory(){
-        return mCategory;
+        return category;
     }
     public String getLanguage(){
-        return mLanguage;
+        return language;
     }
     public String getCountry(){
-        return mCountry;
+        return country;
     }
-    public ArrayList<String> getSortsByAvailable(){
-        return mSortsByAvailable;
+    public List<String> getSortsByAvailable(){
+        return sortsByAvailable;
+    }
+    public void setPushId(String pushId){
+        this.pushId = pushId;
+    }
+    public String getPushId(){
+        return pushId;
     }
 }
